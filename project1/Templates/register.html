@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	  <title>Registeration Form</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class='text-center'>
+		<div class="well">
+			<h1> REGISTER </h1>
+		</div>
+	</div>
+	{% if message != None %}
+		<div class="alert alert-danger alert-dismissible">
+  			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<strong>{{ message }}</strong> 
+		</div>
+	{% endif %}
+	<div class="container">
+		<form action="{{ url_for('register_to_db') }}" method="post">
+		<div class="form-group">
+			<label class="col-sm-4" for="Name">Name : </label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" name="uname">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-4" for="email">E-mail : </label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" name="email">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-4" for="Pass">Password : </label>
+			<div class="col-sm-6">
+				<input type="password" class="form-control" name="password">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-4" for="ConfirmPassword">Confirm Password : </label>
+			<div class="col-sm-6">
+				<input type="password" class="form-control" name="cpass">
+			</div>
+		</div>
+		<div class="form-group" >
+			<div class="col-sm-offset-6 col-sm-10" style="margin-top: 5%">
+				<button type="submit" class="btn btn-success">Submit</button>
+	    	</div>
+    	</div>
+    	</form>
+		<form action="{{ url_for('google_auth.login') }}" method="get">
+		<div class="form-group" style="margin-top: 30%">
+			<label class="col-sm-offset-6 col-sm-10" for="google_login">Login using :</label>
+			<div class="col-sm-offset-6 col-sm-10">
+				<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png" alt="Submit Form" height="10%" width="10%"/>
+			</div>
+		</div>
+		</form>
+	</div>
+</body>
+</html>

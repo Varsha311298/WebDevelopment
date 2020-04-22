@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<title>{% block title %}{% endblock %}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style>
+		h1, h2, h3, h4
+		{
+			color: #80439c;
+		}
+	</style>
+	{% endblock %}
+</head>
+<body>
+	<div class ="p-3 mb-2 bg-light text-white">
+	<h1>{% block heading %}{% endblock %}</h1>
+		<div class="container">
+		<div class="row">
+			<div class="col-sm-3" style="margin-left: 10%"><h4>{% block subheading %}{% endblock %}</h4></div>
+			<div class="text-right">
+				<h3> From GoodReads reviews:</h3>
+				<h5> Work Ratings Count : {{ work_ratings_count }}</h5>
+				<h5> Average Rating : {{ average_rating }}</h5>
+			</div>
+		</div>
+		<div class="row">
+			<h3 style="margin-left:25% ">Reviews:</h3>
+			<form action="{{ url_for('add_review', item_id=item.isbn) }}" method="post">
+				<div class="form-group">
+					<label class="col-sm-offset-3 col-sm-2" for="add_review">Add a review: </label>
+					<div class="col-sm-3">
+						<textarea name="my_review" style="color: black;" rows="3" cols="35"> </textarea>
+					</div>
+				</div>
+				<div class="form-group" >
+					<div class="col-sm-4">
+						<button type="submit" class="btn btn-danger">Submit review</button>
+					</div>
+				</div>
+			</form>
+			<form action="{{ url_for('index') }}">
+				<div class="form-group" >
+					<div class="col-sm-4">
+						<button type="submit" class="btn btn-warning">BACK</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="row">
+			{% block all_reviews %}{% endblock %}
+		</div>
+	</div>
+</div>
+</body>
+</html>

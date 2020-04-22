@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}
+{{ item.title }}
+{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block heading %}
+<div class="well text-center">
+   <h1><b>{{ item.title }}</b></h1>
+</div>
+{% endblock %}
+{% block subheading %}
+	<p> <h3><b>Author</b></h3> - {{ item.author }} </p>
+	<p> <h3><b>Year</h3></b> - {{ item.year }} </p>
+{% endblock %}
+
+{% block all_reviews %}
+<ul>
+	{% if reviews_own != None %}
+		<div class="panel panel-default" style="margin-top: 2%">
+  			<div class="panel-body text-black" style="background-color: #25c2a1 ">
+  			<h4> @{{ username }} - @recent </h4>
+  			<p> {{ reviews_own }}</p>
+  			</div>
+		</div>
+	{% endif %}
+	{% if reviews_others != None %}
+		{% for item in reviews_others %}
+		<div class="panel panel-default" style="margin-top: 2%">
+  			<div class="panel-body text-black" style="background-color: #25c2a0 ">
+  			<h4> @{{item.user_id}} - {{item.user_name}} </h4>
+  			<p> {{ item.text }}</p>
+  			</div>
+		</div>
+		{% endfor %}
+	{% endif %}
+</ul>
+{% endblock %}
